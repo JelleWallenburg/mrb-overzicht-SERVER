@@ -2,7 +2,7 @@
 
 ## Beschrijving
 
-mrb-overview is an app for getting insights in your monthly Dutch motor vehicle tax (mrb). Users can create virtual garages in regions in the Netherlands and add vehicles by number plate to simulate their monthly mrb paid of their garage(s).
+mrb-overview is an app for getting insights in your monthly Dutch motor vehicle tax (mrb). Users can create virtual garages in regions in the Netherlands and add vehicles by licence plate to simulate their monthly mrb paid of their garage(s).
 
 ## User Stories
 
@@ -38,13 +38,14 @@ Yearly mrb development:
 
 ## Routes
 
-- / - Homepage
-- /auth/signup - Signup form
-- /auth/login - Login form
-- /restaurants - restaurant list
-- /restaurants/create - create a restaurant
-- /restaurants/:id - restaurant detail
-- /profile/me - my details and favorite restaurants
+- GET/ - Homepage
+- POST/auth/signup - Signup form: username, email and password
+- GET/auth/login - Login form: username, password
+- POST/auth/logout - redirects to Hompage
+- (GET/PUT/POST/garages) - CRUD garage
+- (GET/PUT/POST)/garage/:id - garage detail
+- (GET)/vehicle/:id - vehicle detail
+- (GET/POST)/profile/me - my details
 - 404
 
 ## Pages
@@ -52,37 +53,44 @@ Yearly mrb development:
 - Home Page (public)
 - Sign in Page (anon only)
 - Log in Page (anon only)
-- Restaurants List Page (public only)
-- Restaurant Create (user only)
-- Restaurant Detail Page (public only)
+- Garage CRUD (user only)
+- Garage Detail Page (user only)
 - My Profile Page (user only)
 - 404 Page (public)
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
-- Search component
-  - Output: change(terms: string)
+- Navigation Bar component
+- Hero component
+- Garage Card component
+- Vehicle Card component
+- Vehicle Card-detailed component
 
-## IO
-
+## Pages
+- Homepage
+- SignupPage
+- LoginPage
+- GaragesPage
+- GaragePage
+- VehiclePage
 
 ## Services
-
 - Auth Service
   - auth.login(user)
   - auth.signup(user)
   - auth.logout()
   - auth.me()
   - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)   
+- Garage Service
+  - garage.list(data)
+  - garage.create(data)
+  - garage.update(data)
+  - garage.remove(data)
+- Vehicle Service
+  - vehicle.list()
+  - vehicle.create(data)
+  - vehicle.update(data)
+  - vehicle.remove(data)
 
 # Server
 
@@ -91,19 +99,25 @@ Yearly mrb development:
 User model
 
 ```
-username - String // required
-email - String // required & unique
+username - String // required & unique
+email - String // required
 password - String // required
-favorites - [ObjectID<Restaurant>]
 ```
 
-Restaurant model
+Garage model
 
 ```
 owner - ObjectID<User> // required
 name - String // required
-phone - String
-address - String
+postalCode - String //required, 4 numbers and ending two letters
+```
+
+Vehicle model
+
+```
+garage - ObjectID<Garage> // required
+licence plate - String //required, check if exists in RDW data
+image - String
 ```
 
 ## API Endpoints/Backend Routes
@@ -121,8 +135,6 @@ address - String
 - POST /auth/logout
   - body: (empty)
 - POST /user/me/favorite
-  - body:
-    - restaurantId
 - DELETE /user/me/favorite/:restaurantId
   - body: (empty)
 - GET /restaurant
