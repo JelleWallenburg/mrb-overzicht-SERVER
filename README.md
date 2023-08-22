@@ -1,28 +1,38 @@
-# Project Name
+# mrb-overview
 
-## Description
+## Beschrijving
 
-Describe your project in one/two lines.
+mrb-overview is an app for getting insights in your monthly Dutch motor vehicle tax (mrb). Users can create virtual garages in regions in the Netherlands and add vehicles by number plate to simulate their monthly mrb paid of their garage(s).
 
 ## User Stories
 
--  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
--  **Signup:** As an anon I can sign up in the platform so that I can start saving favorite restaurants
--  **Login:** As a user I can login to the platform so that I can see my favorite restaurants
--  **Logout:** As a user I can logout from the platform so no one else can use it
--  **Add Restaurants** As a user I can add a restaurant so that I can share it with the community
--  **List Restaurants** As a user I want to see the restaurants so that I can choose one to eat
--  **Search Restaurants** As a user I want to search restaurants by name so that I know if it´s already in the platform
--  **Add to favorites** As a user I want to add a restaurant to favorite so that I can save the restaurants that I liked the most
--  **See my favorites** As a user I want to see my favorite restaurantes so that I can see the ones I liked the most
+-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault.
+-  **Signup:** As an anon I can sign up in the platform so that I can start saving garages and vehicles.
+-  **Login:** As a user I can login to the platform so that I can see my garages and vehicles.
+-  **Logout:** As a user I can logout from the platform so no one else can use it.
+-  **Check profile:** 
+-  **CREATE garage/vehicle:** As a user I can add a garage/vehicle so I can calculate my total mrb.
+-  **READ mrb overview:** As a user I can check my mrb on user/garage or vehicle level and see detailed information about the garage/vehicle.
+-  **UPDATE garage/vehicle:** As a user I can update a garage/vehicle so that I can update my mrb calculation.
+-  **DELETE garage/vehicle:** As a user I can delete a garage/vehicle so that I can update my total mrb calculation.
+
 
 ## Backlog
 
-User profile:
-- see other users profile sand their favorites
+Different language:
+- add English as a language
 
-Geo Location:
-- see restaurants in a map
+Upload vehicle image:
+- add an image of the specific vehicle (and extract licence plate)
+
+Yearly overview:
+- send yearly overview to registered email
+
+Geo location:
+- choose location of garage by point on map.
+
+Yearly mrb development:
+- see the development of mrb over years
   
 # Client
 
