@@ -122,6 +122,8 @@ image - String
 
 ## API Endpoints/Backend Routes
 
+What do I have to fill in here? Can I merge the routes and the API endpoints/backend routes? Where do I have to put the routes to the external API?
+
 - GET /auth/me
 - POST /auth/signup
   - body:
@@ -145,25 +147,27 @@ image - String
     - address
 - GET /restaurant/:id
 
-  
-
 ## Links
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to trello board](https://trello.com/b/FFxOjflY/mrb-overzicht-mvp) or picture of your physical board
+
+### Wireframes
+
+[Link to Figma](https://www.figma.com/file/F6LXHeK6yZkrUjnd7WIZRe/mrb-overzicht?type=design&node-id=0-1&mode=design&t=w0kh7dD9DuA2s4Tq-0)
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](http://github.com)
-[Server repository Link](http://github.com)
+[Client repository Link](https://github.com/JelleWallenburg/mrb-overzicht-CLIENT)
+[Server repository Link](https://github.com/JelleWallenburg/mrb-overzicht-SERVER)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](http://heroku.co)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1hCJ9616y74af72xwZfWvA1Zmy5JD8eR6JxtS-GuLq6g/edit#slide=id.p)
