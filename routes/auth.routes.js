@@ -2,10 +2,11 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs"); //import password-hashing function
 const saltRounds = 10; //set cost factor
 const jwt = require("jsonwebtoken"); //import token function
-
+const { isAuthenticated }= require('../middlewares/jwt.middleware')
 const User = require("../models/User.model"); //import user model
 
-router.post("/signup", (req, res, next) => {
+
+router.post("/signup", (req, res) => {
   const { username, email, password } = req.body;
 
   // Check if the email or password or name is provided as an empty string
@@ -47,7 +48,7 @@ router.post("/signup", (req, res, next) => {
     })
   });
 
-  router.post("/login", (req, res, next) => {
+  router.post("/login", (req, res) => {
     const { username, password } = req.body;
 
     // Check if email or password are provided as empty string 
@@ -93,4 +94,8 @@ router.post("/signup", (req, res, next) => {
     .catch(err => res.status(500).json({ message: "Internal Server Error Logging in" }));
   });
   
+  router.get('/verify', isAuthenticated, (req, res) => {
+    res.status(200).json(req.payload);
+  });
+
   module.exports = router;
