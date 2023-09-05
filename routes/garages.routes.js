@@ -30,7 +30,6 @@ router.post("/", isAuthenticated, (req, res) =>{
 
   Garage.findOne({ownedBy:_id, garageName:garageName})
   .then((garage) => {
-    console.log("already exists")
     if (garage) {
       res.status(400).json({ message: "Garage name already exists."})
       return;

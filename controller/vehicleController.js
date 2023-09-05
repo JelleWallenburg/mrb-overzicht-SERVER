@@ -2,7 +2,7 @@ const Vehicle = require("../models/Vehicle.model");
 const axios = require("axios");
 const taxMrb = require("../tax-calculation/tariefMrb")
 
-const seeVehicle = async (req, res) => {
+const seeVehicles = async (req, res) => {
   try {
     const {inGarageOf} = req.query;
     const seeVehicle = await Vehicle.find({inGarageOf: inGarageOf}).lean()
@@ -56,4 +56,4 @@ const delVehicle = async (req, res) => {
   }
 }
 
-module.exports= {seeVehicle, addVehicle, delVehicle}
+module.exports= {seeVehicles, addVehicle, delVehicle}

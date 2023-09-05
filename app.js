@@ -21,11 +21,11 @@ app.use("/", indexRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
-const garageRoutes = require("./routes/garage.routes");
-app.use("/garage", garageRoutes);
+const garagesRoutes = require("./routes/garages.routes");
+app.use("/garages", garagesRoutes);
 
-const vehicleRoutes = require("./routes/vehicle.routes");
-app.use("/vehicle", vehicleRoutes);
+const vehiclesRoutes = require("./routes/vehicles.routes");
+app.use("/vehicles", vehiclesRoutes);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
