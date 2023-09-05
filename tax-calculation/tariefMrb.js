@@ -2,9 +2,9 @@ const { tariefMotorrijwiel } = require("./tariefMotorrijwiel");
 const { tariefPersonenauto } = require("./tariefPersonenauto");
 
 function tariefMrb(voertuigsoort, massa_ledig_voertuig, brandstof_omschrijving){
-  if(voertuigsoort == "Personenauto") {
+  if(voertuigsoort === "Personenauto") {
     tariefMrb = tariefPersonenauto(massa_ledig_voertuig, brandstof_omschrijving)
-  } else if (voertuigsoort == "Motorfiets") {
+  } else if (voertuigsoort === "Motorfiets") {
     tariefMrb = tariefMotorrijwiel();
   } else {
     tariefMrb = null;
@@ -12,5 +12,6 @@ function tariefMrb(voertuigsoort, massa_ledig_voertuig, brandstof_omschrijving){
   }
   return tariefMrb;
 }
+//  console.log("check tariefMrb", tariefMrb("Personenauto", 1000, "Benzine"));
+module.exports = {tariefMrb};
 
-console.log("check tariefMrb", tariefMrb("Personenauto", 1000, "Benzine"));

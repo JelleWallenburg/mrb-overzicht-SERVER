@@ -25,9 +25,6 @@ const vehicleSchema = new Schema(
     brandstof_omschrijving: { //from API gekentekende_voertuigen_brandstof
       type: String,
       required: true
-    },
-    emissie_co2_gecombineerd_wltp: { //from API gekentekende_voertuigen_brandstof
-      type: Number
     }
   },
   {
