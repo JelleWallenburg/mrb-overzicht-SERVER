@@ -24,13 +24,14 @@ router.post("/", isAuthenticated, (req, res) =>{
   console.log(postalCodeNumber, postalCodeLetter)
 
   if(!postalCodeNumberRegex.test(postalCodeNumber) || !postalCodeLetterRegex.test(postalCodeLetter)) {
-    res.status(400).json({ message: "Not a valid postal code."});
+    res.status(401).json({ message: "Not a valid postal code."});
+    console.log("error postalcode")
     return;
   };
 
   Garage.findOne({ownedBy:_id, garageName:garageName})
   .then((garage) => {
-    if (garage) {
+        if (garage) {
       res.status(400).json({ message: "Garage name already exists."})
       return;
     }
@@ -42,7 +43,7 @@ router.post("/", isAuthenticated, (req, res) =>{
     });
   })
   .then((createdGarage) => res.status(201).json(createdGarage))
-  .catch((err) => res.json(err));
+  .catch((err) => console.log('error backend',error));
 });
 
 router.delete("/", isAuthenticated, (req,res)=> {
