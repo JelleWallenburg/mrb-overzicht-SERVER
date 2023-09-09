@@ -1,15 +1,15 @@
 const { isAuthenticated } = require("../middlewares/jwt.middleware");
 
-const vehicleController = require('../controller/vehicleController')
+const vehiclesController = require('../controller/vehiclesController')
 
 
 const router = require("express").Router();
 
 router
   .route("/")
-  .get(isAuthenticated, vehicleController.seeVehicles)
-  .post(isAuthenticated, vehicleController.addVehicle)
-  .delete(isAuthenticated, vehicleController.delVehicle)
+  .get(isAuthenticated, vehiclesController.seeVehicles)
+  .post(isAuthenticated, vehiclesController.addVehicle)
+  .delete(isAuthenticated, vehiclesController.delVehicle)
 ;
 
 module.exports = router;

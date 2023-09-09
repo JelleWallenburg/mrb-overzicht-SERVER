@@ -27,6 +27,9 @@ app.use("/garages", garagesRoutes);
 const vehiclesRoutes = require("./routes/vehicles.routes");
 app.use("/vehicles", vehiclesRoutes);
 
+const vehicleRoutes = require("./routes/vehicle.routes");
+app.use("/vehicle", vehicleRoutes);
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
