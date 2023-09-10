@@ -50,7 +50,6 @@ router.post("/signup", (req, res) => {
 
   router.post("/login", (req, res) => {
     const { username, password } = req.body;
-
     // Check if email or password are provided as empty string 
     if (username === '' || password === '') {
       res.status(400).json({ message: "Provide email and password." });
