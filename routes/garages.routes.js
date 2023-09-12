@@ -13,7 +13,6 @@ router.get("/", isAuthenticated, (req, res) => {
 router.post("/", isAuthenticated, (req, res) =>{
   const { _id }= req.payload;
   const { garageName, postalCode} =req.body;
-  console.log(garageName)
 
   //Check if postalCode is plausible
   const postalCodeNumber = postalCode.substr(0,4);
@@ -43,8 +42,19 @@ router.post("/", isAuthenticated, (req, res) =>{
     });
   })
   .then((createdGarage) => res.status(201).json(createdGarage))
-  .catch((err) => console.log('error backend',error));
+  .catch((err) => console.log('error backend', error));
 });
+
+router.put("/", (req,res)=>{
+  const { _id, garageName, postalCode} = req.body;
+
+  Garage.findByIdAndUpdate(_id,{ garageName, postalCode },{new: true})
+  .then(updatedGarage => {
+    const {_id, ownedBy, garageName, postalCode} = updatedGarage;
+    res.json({updatedGarage: {_id, ownedBy, garageName, postalCode}})
+  })
+  .catch(err => console.error(err))
+})
 
 router.delete("/", isAuthenticated, (req,res)=> {
   const { _id }= req.body;
