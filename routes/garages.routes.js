@@ -1,5 +1,6 @@
 const { isAuthenticated } = require("../middlewares/jwt.middleware");
 const Garage = require("../models/Garage.model");
+const Vehicle =require("../models/Vehicle.model")
 
 const router = require("express").Router();
 
@@ -59,7 +60,10 @@ router.put("/", (req,res)=>{
 router.delete("/", isAuthenticated, (req,res)=> {
   const { _id }= req.body;
   Garage.findByIdAndRemove(_id)
-  .then(res.status(200).json({ message: "Garage succesfully deleted"}))
+  .then(oneGarage => {
+    Vehicle.deleteMany({inGarageOf: oneGarage._id}, {new: true})
+    .then(res.status(200).json({ message: "Garage succesfully deleted"}))
+  })
   .catch(err => res.json(err))
 })
 
