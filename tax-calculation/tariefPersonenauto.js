@@ -18,10 +18,11 @@ function tariefstellingPersonenauto(massa_ledig_voertuig) {
   return belasting
 };
 
+//lid 2 aanhef
 function brandstoftoeslag(brandstof_omschrijving, massa_ledig_voertuig){
   let brandstoftoeslag = null;
   let eigen_massa= -Math.round(-massa_ledig_voertuig/100)*100 // of samenvoegen
-  //lid 2 aanhef
+  
   if (brandstof_omschrijving == "Benzine"){ // of gelijkwaardig aan lichte olie
     brandstoftoeslag = 0;
   } else if(brandstof_omschrijving == "Diesel"){ // lid 2 onderdeel a
@@ -66,14 +67,40 @@ function brandstoftoeslag(brandstof_omschrijving, massa_ledig_voertuig){
   return brandstoftoeslag
 };
 
-function tariefPersonenauto (massa_ledig_voertuig, brandstof_omschrijving) {
-  let tarief = tariefstellingPersonenauto(massa_ledig_voertuig) + brandstoftoeslag(brandstof_omschrijving, massa_ledig_voertuig);
-  return tarief
+//lid 4 fijnstoftoeslag
+
+
+// art. 23b
+function personenAutometLageUitstoot(tarief, datum_eerste_toelating, co2_uitstoot_gecombineerd, emissie_co2_gecombineerd_wltp){
+  //lid 3
+  let co2Uitstoot = null;
+  if (datum_eerste_toelating < 20210101){
+    co2Uitstoot = co2_uitstoot_gecombineerd;
+  } else{
+    co2Uitstoot=  emissie_co2_gecombineerd_wltp;
+  }
+
+  //lid 1 onderdeel a
+  let belasting;
+  if (co2Uitstoot == 0){
+    belasting = 0;
+  } else if((co2Uitstoot > 0)  && !(co2Uitstoot > 50 )){
+    belasting = tarief * 0.5;
+  } else {
+    belasting = tarief
+  }
+  return belasting
+}
+
+function tariefPersonenauto (massa_ledig_voertuig, brandstof_omschrijving, datum_eerste_toelating, co2_uitstoot_gecombineerd, emissie_co2_gecombineerd_wltp) {
+  let tariefArtikel23 = tariefstellingPersonenauto(massa_ledig_voertuig) + brandstoftoeslag(brandstof_omschrijving, massa_ledig_voertuig);
+  console.log('tarief artikel 23', tariefArtikel23)
+  let tariefArtikel23b = personenAutometLageUitstoot(tariefArtikel23, datum_eerste_toelating, co2_uitstoot_gecombineerd, emissie_co2_gecombineerd_wltp);
+  console.log('tarief artikel 23b', tariefArtikel23b)
+  return tariefArtikel23b
 }
 
 // fijnstoftoeslag
-// personenautoLageuitstoot
-//opcenting
-
+// opcenting
 
 module.exports= {tariefPersonenauto};
