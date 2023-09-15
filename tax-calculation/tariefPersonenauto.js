@@ -82,7 +82,7 @@ function personenAutometLageUitstoot(tarief, datum_eerste_toelating, co2_uitstoo
 
   //lid 1 onderdeel a
   let belasting;
-  if (co2Uitstoot == 0){
+  if (co2Uitstoot == 0 ||co2Uitstoot == 0){
     belasting = 0;
   } else if((co2Uitstoot > 0)  && !(co2Uitstoot > 50 )){
     belasting = tarief * 0.5;
