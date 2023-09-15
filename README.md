@@ -13,7 +13,7 @@ mrb-overview is an app for getting insights in your monthly Dutch motor vehicle 
 -  **Check profile:** 
 -  **CREATE garage/vehicle:** As a user I can add a garage/vehicle so I can calculate my total mrb.
 -  **READ mrb overview:** As a user I can check my mrb on user/garage or vehicle level and see detailed information about the garage/vehicle.
--  **UPDATE garage/vehicle:** As a user I can update a garage/vehicle so that I can update my mrb calculation.
+-  **UPDATE garage:** As a user I can update a garage so that I can update my mrb calculation.
 -  **DELETE garage/vehicle:** As a user I can delete a garage/vehicle so that I can update my total mrb calculation.
 
 
@@ -22,31 +22,21 @@ mrb-overview is an app for getting insights in your monthly Dutch motor vehicle 
 Different language:
 - add English as a language
 
-Upload vehicle image:
-- add an image of the specific vehicle (and extract licence plate)
-
-Yearly overview:
-- send yearly overview to registered email
-
-Geo location:
-- choose location of garage by point on map.
-
-Yearly mrb development:
-- see the development of mrb over years
+Extend tax calculation:
+- add 'fijnstoftoeslag'
+- add more vehicles
+- add 'opcenting'
   
 # Client
 
 ## Routes
 
 - GET/ - Homepage
-- POST/auth/signup - Signup form: username, email and password
-- GET/auth/login - Login form: username, password
-- POST/auth/logout - redirects to Hompage
+- (GET/POST)/signup - Signup form: username, email and password
+- (GET/POST)/login - Login form: username, password
 - (GET/PUT/POST/garages) - CRUD garage
 - (GET/PUT/POST)/garage/:id - garage detail
 - (GET)/vehicle/:id - vehicle detail
-- (GET/POST)/profile/me - my details
-- 404
 
 ## Pages
 
@@ -56,15 +46,20 @@ Yearly mrb development:
 - Garage CRUD (user only)
 - Garage Detail Page (user only)
 - My Profile Page (user only)
-- 404 Page (public)
 
 ## Components
 
 - Navigation Bar component
-- Hero component
+- Footer component
+- isAnon component
+- Private component
+- Loading component
 - Garage Card component
 - Vehicle Card component
 - Vehicle Card-detailed component
+- Vehicle Icon component
+- NewGarageForm component
+- NewVehicleForm component
 
 ## Pages
 - Homepage
@@ -86,12 +81,14 @@ Yearly mrb development:
   - garage.create(data)
   - garage.update(data)
   - garage.remove(data)
-- Vehicle Service
-  - vehicle.list()
+- Vehicles Service
+  - vehicle.get()
   - vehicle.create(data)
-  - vehicle.update(data)
   - vehicle.remove(data)
-
+- Vehicles Service
+  - vehicle.get()
+ 
+  
 # Server
 
 ## Models
@@ -116,36 +113,16 @@ Vehicle model
 
 ```
 garage - ObjectID<Garage> // required
-licence plate - String //required, check if exists in RDW data
-image - String
+licencePlate - String //required, check if exists in RDW data
+voertuigsoort - String //required
+bruto-bpm - Number
+massa-ledig_voertuig - Number //required
+brandstof_omschrijving - String //required
+datum_eerste_toelating - Number
+co2_uitstoot_gecombineerd - Number
+emissie_co2_gecombineerd_wltp - Number
+
 ```
-
-## API Endpoints/Backend Routes
-
-What do I have to fill in here? Can I merge the routes and the API endpoints/backend routes? Where do I have to put the routes to the external API?
-
-- GET /auth/me
-- POST /auth/signup
-  - body:
-    - username
-    - email
-    - password
-- POST /auth/login
-  - body:
-    - username
-    - password
-- POST /auth/logout
-  - body: (empty)
-- POST /user/me/favorite
-- DELETE /user/me/favorite/:restaurantId
-  - body: (empty)
-- GET /restaurant
-- POST /restaurant
-  - body:
-    - name
-    - phone
-    - address
-- GET /restaurant/:id
 
 ## Links
 
@@ -155,7 +132,7 @@ What do I have to fill in here? Can I merge the routes and the API endpoints/bac
 
 ### Wireframes
 
-[Link to Figma](https://www.figma.com/file/F6LXHeK6yZkrUjnd7WIZRe/mrb-overzicht?type=design&node-id=0-1&mode=design&t=w0kh7dD9DuA2s4Tq-0)
+[Link to Figma](https://www.figma.com/file/F6LXHeK6yZkrUjnd7WIZRe/mrb-overzicht?type=design&node-id=0-1&mode=design&t=mnTO3WtPznz3SP0N-0)
 
 ### Git
 
@@ -164,7 +141,7 @@ The url to your repository and to your deployed project
 [Client repository Link](https://github.com/JelleWallenburg/mrb-overzicht-CLIENT)
 [Server repository Link](https://github.com/JelleWallenburg/mrb-overzicht-SERVER)
 
-[Deploy Link](http://heroku.co)
+[Deploy Link]([http://heroku.co](https://mrb-overzicht-client.vercel.app/))
 
 ### Slides
 
